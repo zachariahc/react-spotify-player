@@ -30,7 +30,6 @@ class App extends Component {
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
   componentDidMount() {
-    console.log(clientId)
     // Set token
     let token = hash.access_token;
     if (token) {
