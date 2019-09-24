@@ -6,7 +6,6 @@ export async function getUserID(token) {
   };
   try {
     const { data } = await axios.get("https://api.spotify.com/v1/me", params);
-    console.log(data);
     return {
       username: data.id,
       displayName: data.display_name,
