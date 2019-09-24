@@ -3,9 +3,11 @@ import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import { getUserID } from "./utils";
 import hash from "./hash";
 import Player from "./components/Player";
-import Playlists from './components/Playlists'
-import NavBar from './components/NavBar';
+import Playlists from "./components/Playlists";
+import NavBar from "./components/NavBar";
 import axios from "axios";
+import { Switch, Route } from "react-router-dom";
+
 import "./App.css";
 
 class App extends Component {
@@ -24,8 +26,8 @@ class App extends Component {
       is_playing: "Paused",
       progress_ms: 0,
       playlists: [],
-      displayName: '',
-      userImage: ''
+      displayName: "",
+      userImage: ""
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -69,16 +71,15 @@ class App extends Component {
       headers: { Authorization: "Bearer " + token }
     };
     try {
-      const {username, displayName, userImage } = await getUserID(token);
+      const { username, displayName, userImage } = await getUserID(token);
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
       );
-      console.log(data)
       this.setState({
         playlists: data.items,
         displayName: displayName,
-        userImage: userImage,
+        userImage: userImage
       });
     } catch (err) {
       console.error(err);
@@ -86,13 +87,14 @@ class App extends Component {
   };
 
   render() {
-    const { 
-      playlists, 
-      item, 
-      is_playing, 
+    const {
+      playlists,
+      item,
+      is_playing,
       progress_ms,
       userImage,
-      displayName } = this.state;
+      displayName
+    } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -109,17 +111,32 @@ class App extends Component {
           )}
           {this.state.token && (
             <div>
-              <NavBar 
-              userImage={userImage} 
-              displayName={displayName} />
+              <NavBar userImage={userImage} displayName={displayName} />
               <Player
-                item={item}
-                is_playing={is_playing}
-                progress_ms={progress_ms}
+              item={item}
+              is_playing={is_playing}
+              progress_ms={progress_ms} 
               />
-              <Playlists
-                playlists={playlists} 
-              />
+              <Switch>
+                {/* <Route
+                  exact path="/"
+                  render={props => (
+                    <Player
+                      {...props}
+                      item={item}
+                      is_playing={is_playing}
+                      progress_ms={progress_ms}
+                    />
+                  )}
+                /> */}
+
+                <Route
+                  path="/playlists"
+                  render={props => (
+                    <Playlists {...props} playlists={playlists} />
+                  )}
+                />
+              </Switch>
             </div>
           )}
         </header>

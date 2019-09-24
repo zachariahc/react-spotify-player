@@ -1,4 +1,8 @@
 /** Now Playing **/
+.now-playing_title {
+     margin: .5em;
+     float: left; 
+}
 
 .now-playing__name {
     font-size: 1.5em;

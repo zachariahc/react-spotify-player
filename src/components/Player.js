@@ -28,10 +28,11 @@ class Player extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         { this.props.item ?
           <div className="main-wrapper">
             <div className="now-playing__img">
+            <p className="now-playing_title">Now Playing: </p>
               <img
                 alt="album cover art"
                 src={
@@ -46,15 +47,12 @@ class Player extends Component {
               <div className="now-playing__artist">
                 {this.props.item.artists[0].name}
               </div>
-              <div className="now-playing__status">
-                {this.props.is_playing ? "Playing" : "Paused"}
-              </div>
               <div className="progress">
                 <div className="progress__bar" style={this.state.progress} />
               </div>
             </div>
             <div className="background" style={this.state.background} />{" "}
-          </div> : <p>Commercial Break</p>
+          </div> : <p>Commercial Break or No Song Playing</p>
         }
       </div>
     );
