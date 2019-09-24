@@ -27,7 +27,9 @@ class App extends Component {
       progress_ms: 0,
       playlists: [],
       displayName: "",
-      userImage: ""
+      userImage: "",
+      tracks: [],
+      url: ''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -72,14 +74,19 @@ class App extends Component {
     };
     try {
       const { username, displayName, userImage } = await getUserID(token);
+     
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
       );
+      // const { tracks, } = await getPlaylistTracks(token,)
+
       this.setState({
         playlists: data.items,
         displayName: displayName,
-        userImage: userImage
+        userImage: userImage,
+        // tracks: tracks,
+        url: data.url
       });
     } catch (err) {
       console.error(err);
@@ -93,7 +100,8 @@ class App extends Component {
       is_playing,
       progress_ms,
       userImage,
-      displayName
+      displayName,
+      tracks
     } = this.state;
     return (
       <div className="App">
@@ -133,7 +141,7 @@ class App extends Component {
                 <Route
                   path="/playlists"
                   render={props => (
-                    <Playlists {...props} playlists={playlists} />
+                    <Playlists {...props} playlists={playlists} tracks={tracks} />
                   )}
                 />
               </Switch>
