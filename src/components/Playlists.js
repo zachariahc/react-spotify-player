@@ -15,8 +15,8 @@ export class Playlists extends Component {
        const trackArray =[]
 
        const trackInfo = tracks.map(trackName => {
+            console.log("track data", trackName)
             const namesOfAlbums = trackName.track
-            // this.setState({albums: {name: namesOfAlbums.name}})
             trackArray.push({name: namesOfAlbums.name})
             this.setState({albums: trackArray})
             return namesOfAlbums
@@ -24,6 +24,7 @@ export class Playlists extends Component {
 
        const nameArray = []
        trackInfo.map(names => {
+           console.log("names data", names)
           names.artists.map(names => {
               return nameArray.push({name: names.name, id: names.id})
           })
@@ -41,18 +42,16 @@ export class Playlists extends Component {
     })
     }
 
-    displayAlbumNames(){
+    displayTrackNames(){
       const { albums } = this.state 
-      console.log("loggin albums", albums)
       return albums.map(name => {
-          console.log(name.name)
         return (
-            <p key={uniqid()}>Album Name: {name.name}</p>
+            <p key={uniqid()}>Track Name: {name.name}</p>
         )
     })
     }
 
-    displayList(){
+    listOfPlaylists(){
         const { playlists } = this.props
         return playlists.map(pl => {
             const trackLink = { link: pl.tracks.href}
@@ -66,10 +65,11 @@ export class Playlists extends Component {
     render() {
         return (
             <div className="playlist-main">
-                <h3 className="playlist-header">Playlists</h3>
-                {this.displayList()}
-                {this.displayArtistNames()}
-                {this.displayAlbumNames()}
+            <div class="grid-container">
+  <div class="grid-item">{this.listOfPlaylists()}</div>
+  <div class="grid-item">{this.displayTrackNames()}</div>
+  <div class="grid-item">{this.displayArtistNames()}</div>
+</div>
             </div>
         )
     }
