@@ -27,11 +27,16 @@ class App extends Component {
       progress_ms: 0,
       playlists: [],
       displayName: "",
-      userImage: ""
+      userImage: "",
+      tracks: [],
+      url: '',
+      timeOfSong: ''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
+
   componentDidMount() {
+    console.log(this.state)
     // Set token
     let token = hash.access_token;
     if (token) {
@@ -43,8 +48,7 @@ class App extends Component {
       this.getUserPlaylists(token);
     }
   }
-
-  async getCurrentlyPlaying(token) {
+  getCurrentlyPlaying = async (token) => {
     const params = {
       headers: { Authorization: "Bearer " + token }
     };
@@ -57,9 +61,11 @@ class App extends Component {
         this.setState({
           item: data.item,
           is_playing: data.is_playing,
-          progress_ms: data.progress_ms
+          progress_ms: data.progress_ms,
+          timeOfSong: data.item.duration_ms
         });
       }
+      console.log(this.state)
     } catch (err) {
       console.log(err);
     }
@@ -72,6 +78,7 @@ class App extends Component {
     };
     try {
       const { username, displayName, userImage } = await getUserID(token);
+     
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
@@ -79,8 +86,19 @@ class App extends Component {
       this.setState({
         playlists: data.items,
         displayName: displayName,
-        userImage: userImage
+        userImage: userImage,
+        // tracks: tracks,
+        url: data.url
       });
+
+      const { timeOfSong, progress_ms } = this.state
+      const refreshSong = timeOfSong - progress_ms
+      if(progress_ms !== null){
+        setInterval(() => {
+          this.getCurrentlyPlaying(token)
+        }, refreshSong)
+      }
+
     } catch (err) {
       console.error(err);
     }
@@ -93,15 +111,16 @@ class App extends Component {
       is_playing,
       progress_ms,
       userImage,
-      displayName
+      displayName,
+      tracks
     } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
             <a
-              className="btn btn--loginApp-link"
+              className="btn btn--login App-link"
               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
                 "%20"
               )}&response_type=token&show_dialog=true`}
@@ -111,7 +130,11 @@ class App extends Component {
           )}
           {this.state.token && (
             <div>
-              <NavBar userImage={userImage} displayName={displayName} />
+              <NavBar 
+              userImage={userImage} 
+              displayName={displayName}
+              currentlyPlaying={this.getCurrentlyPlaying}
+               />
               <Player
               item={item}
               is_playing={is_playing}
@@ -133,7 +156,7 @@ class App extends Component {
                 <Route
                   path="/playlists"
                   render={props => (
-                    <Playlists {...props} playlists={playlists} />
+                    <Playlists {...props} playlists={playlists} tracks={tracks} />
                   )}
                 />
               </Switch>
