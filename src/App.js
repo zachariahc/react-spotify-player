@@ -117,7 +117,7 @@ class App extends Component {
         <header className="">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
-      
+
               <div className="flex-container">
                 <div className="side-containers" >1</div>
                 <div>
@@ -143,20 +143,11 @@ class App extends Component {
                 currentlyPlaying={this.getCurrentlyPlaying}
               />
               <div className="flex-container">
-
                 <div className="side-containers" >
-                <Switch>
-                <Route
-                  path="/playlists"
-                  render={props => (
                     <Playlists
-                      {...props}
                       playlists={playlists}
                       tracks={tracks}
                     />
-                  )}
-                />
-              </Switch>
                 </div>
                 <div>
                 <Player
