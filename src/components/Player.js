@@ -7,7 +7,7 @@ class Player extends Component {
     background: {},
     progress: {}
   };
-
+  
   checkForStyles() {
     if (this.props.item.album.images[0].url !== null) {
       const backgroundStyles = {
@@ -29,9 +29,10 @@ class Player extends Component {
   render() {
     return (
       <div>
-        { this.props.item ?
+        { this.props.item && this.props.is_playing !== "Paused" ?
           <div className="main-wrapper">
             <div className="now-playing__img">
+          
             <p className="now-playing_title">Now Playing: </p>
               <img
                 alt="album cover art"
@@ -50,9 +51,10 @@ class Player extends Component {
               <div className="progress">
                 <div className="progress__bar" style={this.state.progress} />
               </div>
+
             </div>
             <div className="background" style={this.state.background} />{" "}
-          </div> : <p>Commercial Break or No Song Playing</p>
+          </div> : <p>Paused or Commercial Break</p>
         }
       </div>
     );

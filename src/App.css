@@ -2,19 +2,26 @@
   text-align: center;
 } */
 .App {
- margin-bottom: 200px;
- /* border: 1px solid red; */
+ background-color: #26282b;
+ width: 60%;
+ margin: 0 auto;
+ height: 100vh;
+ opacity: .9;
 }
 .App-header {
-  margin-top: 5em;
-  background-color: #282c34;
-  min-height: 10vh;
+  /* margin-top: 5em; */
+  /* background-color: #26282b; */
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  opacity: .9;
+  width: 60%;
+  /* margin: 0 auto; */
+  /* height: 50em; */
 }
 
 .App-link {
@@ -34,6 +41,12 @@ html, body {
 
 body {
   background-color: #282c34;
+  /* background-image: url('https://images.unsplash.com/photo-1484387436194-cf7cb70800ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'); */
+  background: url('https://images.unsplash.com/photo-1484387436194-cf7cb70800ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: #eee;
   font-family: Helvetica, Arial;
   font-size: 3vmin;

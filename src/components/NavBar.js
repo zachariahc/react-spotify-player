@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import hash from "../hash";
 import "./NavBar.css";
 
 export class NavBar extends Component {
@@ -15,7 +16,11 @@ export class NavBar extends Component {
     document.getElementById("mySidenav").style.width = "0";
     this.setState({ navOpen: false });
   };
-
+  refreshSong = () => {
+    const { currentlyPlaying } = this.props;
+    let token = hash.access_token;
+    currentlyPlaying(token);
+  };
   render() {
     const { navOpen } = this.state;
     const { displayName, userImage } = this.props;
@@ -36,7 +41,12 @@ export class NavBar extends Component {
           <Link to="/">Nav 2</Link>
           <Link to="/">Nav 3</Link>
           <Link to="/">Nav 4</Link>
-          <Link to="/">Home</Link>
+          <Link
+            to="/"
+            onClick={() => this.props.currentlyPlaying(hash.access_token)}
+          >
+            Home
+          </Link>
         </div>
       </div>
     );
