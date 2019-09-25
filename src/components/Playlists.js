@@ -69,11 +69,11 @@ export class Playlists extends Component {
           </div>
           <div className="grid-item">
           <h3>Tracks: </h3>
-          {this.displayTrackNames()}
+          {/* {this.displayTrackNames()} */}
           </div>
           <div className="grid-item">
           <h3>Artist: </h3>
-          {this.displayArtistNames()}
+          {/* {this.displayArtistNames()} */}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import hash from "./hash";
 import Player from "./components/Player";
 import Playlists from "./components/Playlists";
 import NavBar from "./components/NavBar";
-import SearchBar from './components/SearchBar'
+import SearchBar from "./components/SearchBar";
 import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
@@ -30,8 +30,8 @@ class App extends Component {
       displayName: "",
       userImage: "",
       tracks: [],
-      url: '',
-      timeOfSong: ''
+      url: "",
+      timeOfSong: ""
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -48,7 +48,7 @@ class App extends Component {
       this.getUserPlaylists(token);
     }
   }
-  getCurrentlyPlaying = async (token) => {
+  getCurrentlyPlaying = async token => {
     const params = {
       headers: { Authorization: "Bearer " + token }
     };
@@ -68,7 +68,7 @@ class App extends Component {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   getUserPlaylists = async token => {
     // Make a call using the token
@@ -77,7 +77,7 @@ class App extends Component {
     };
     try {
       const { username, displayName, userImage } = await getUserID(token);
-     
+
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
@@ -90,14 +90,13 @@ class App extends Component {
         url: data.url
       });
 
-      const { timeOfSong, progress_ms } = this.state
-      const refreshSong = timeOfSong - progress_ms
-      if(progress_ms !== null){
+      const { timeOfSong, progress_ms } = this.state;
+      const refreshSong = timeOfSong - progress_ms;
+      if (progress_ms !== null) {
         setInterval(() => {
-          this.getCurrentlyPlaying(token)
-        }, refreshSong)
+          this.getCurrentlyPlaying(token);
+        }, refreshSong);
       }
-
     } catch (err) {
       console.error(err);
     }
@@ -114,52 +113,53 @@ class App extends Component {
       tracks
     } = this.state;
     return (
-      <div className="App">
+      <div className="">
         <header className="">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
-            <a
-              className="btn btn--login App-link"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                "%20"
-              )}&response_type=token&show_dialog=true`}
-            >
-              Login to Spotify
-            </a>
+
+              <div className="flex-container">
+                <div className="side-containers" >1</div>
+                <div>
+                  {" "}
+                  <a
+                    className="btn btn--login App-link"
+                    href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                      "%20"
+                    )}&response_type=token&show_dialog=true`}
+                  >
+                    Login to Spotify
+                  </a>
+                </div>
+                <div className="side-containers" >3</div>
+              </div>
+
           )}
           {this.state.token && (
             <div>
-              <NavBar 
-              userImage={userImage} 
-              displayName={displayName}
-              currentlyPlaying={this.getCurrentlyPlaying}
-               />
-              <Player
-              item={item}
-              is_playing={is_playing}
-              progress_ms={progress_ms} 
+              <NavBar
+                userImage={userImage}
+                displayName={displayName}
+                currentlyPlaying={this.getCurrentlyPlaying}
               />
-              <SearchBar />
-              <Switch>
-                {/* <Route
-                  exact path="/"
-                  render={props => (
-                    <Player
-                      {...props}
-                      item={item}
-                      is_playing={is_playing}
-                      progress_ms={progress_ms}
+              <div className="flex-container">
+                <div className="side-containers" >
+                    <Playlists
+                      playlists={playlists}
+                      tracks={tracks}
                     />
-                  )}
-                /> */}
-
-                <Route
-                  path="/playlists"
-                  render={props => (
-                    <Playlists {...props} playlists={playlists} tracks={tracks} />
-                  )}
-                />
-              </Switch>
+                </div>
+                <div>
+                <Player
+                item={item}
+                is_playing={is_playing}
+                progress_ms={progress_ms}
+              />
+                </div>
+                <div className="side-containers" >
+                  <SearchBar />
+                </div>
+              </div>
             </div>
           )}
         </header>

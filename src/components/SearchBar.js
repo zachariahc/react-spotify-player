@@ -23,7 +23,7 @@ export class SearchBar extends Component {
         const { results } = this.state
         return results.map(result => {
             return(
-                <p key={result.id}>{result.name}</p>
+                <p className="search-font" key={result.id}>{result.name}</p>
             )
         })
     }
@@ -35,7 +35,6 @@ export class SearchBar extends Component {
                     searchQuery: e.target.value
                 })} onSubmit={this.logState} />
                 <button type="submit" onClick={this.logState}>Search</button>
-
                 <div>
                 {this.displayResults()}
                 </div>
