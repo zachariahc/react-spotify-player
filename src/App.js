@@ -5,6 +5,7 @@ import hash from "./hash";
 import Player from "./components/Player";
 import Playlists from "./components/Playlists";
 import NavBar from "./components/NavBar";
+import SearchBar from './components/SearchBar'
 import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
@@ -36,7 +37,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state)
     // Set token
     let token = hash.access_token;
     if (token) {
@@ -65,7 +65,6 @@ class App extends Component {
           timeOfSong: data.item.duration_ms
         });
       }
-      console.log(this.state)
     } catch (err) {
       console.log(err);
     }
@@ -140,6 +139,7 @@ class App extends Component {
               is_playing={is_playing}
               progress_ms={progress_ms} 
               />
+              <SearchBar />
               <Switch>
                 {/* <Route
                   exact path="/"

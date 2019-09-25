@@ -15,6 +15,19 @@ export async function getUserID(token) {
     console.error(err);
   }
 }
+
+export async function getSearchResults(token, searchQuery) {
+  const params = {
+    headers: { Authorization: "Bearer " + token }
+  };
+  try {
+    const { data } = await axios.get(`https://api.spotify.com/v1/search?q=name:${searchQuery}&type=track`, params);
+    return data
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function getPlaylistTracks(token, playlist_url) {
   const params = {
     headers: { Authorization: "Bearer " + token }
