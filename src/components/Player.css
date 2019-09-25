@@ -1,5 +1,5 @@
 /** Now Playing **/
-.now-playing_title {
+/* .now-playing_title {
      margin: .5em;
      float: left; 
 }
@@ -15,24 +15,24 @@
 
 .now-playing__status {
     margin-bottom: 1em;
-}
-
+} */
+/* 
 .now-playing__img {
     float: left;
     margin-right: 10px;
     text-align: right;
     width: 45%;
-}
+} */
 
-.now-playing__img img {
-    max-width: 80vmin;
-    width: 100%;
-}
+/* .now-playing__img img {
+    max-width: 20vmin;
+    width: 50%;
+} */
 
-.now-playing__side {
-    margin-left: 5%;
-    width: 45%;
-}
+/* .now-playing__side { */
+    /* margin-left: 5%; */
+    /* width: 45%; */
+/* } */
 
 /** Progress **/
 
@@ -47,3 +47,20 @@
     background-color: #eee;
     height: 4px;
 }
+img {
+    height: 12em;
+    width: 12em;
+}
+
+.flex-container-player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+  }
+  
+  .flex-container-player > div {
+    width: 50%;
+    margin: 1em;
+    height: 100vh;
+  }
