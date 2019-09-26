@@ -1,6 +1,6 @@
 .playlist-songs-grid-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     /* border: 1px solid red; */
     width: 100%;
     height: 42.4vh;
