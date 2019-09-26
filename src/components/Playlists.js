@@ -32,28 +32,31 @@ export class Playlists extends Component {
       return names;
     });
   }
+  //TODO: move these functions
+  // displayArtistNames() {
+  //   const { artistNames } = this.state;
+  //   return artistNames.map(name => {
+  //     return <p className="track-artist" key={uniqid()}>{name.name}</p>;
+  //   });
+  // }
 
-  displayArtistNames() {
-    const { artistNames } = this.state;
-    return artistNames.map(name => {
-      return <p className="track-artist" key={uniqid()}>{name.name}</p>;
-    });
-  }
-
-  displayTrackNames() {
-    const { albums } = this.state;
-    return albums.map(name => {
-      return <p className="track-artist" key={uniqid()}>{name.name}</p>;
-    });
-  }
+  // displayTrackNames() {
+  //   const { albums } = this.state;
+  //   return albums.map(name => {
+  //     return <p className="track-artist" key={uniqid()}>{name.name}</p>;
+  //   });
+  // }
 
   listOfPlaylists() {
     const { playlists } = this.props;
     return playlists.map(pl => {
       const trackLink = { link: pl.tracks.href };
-
       return (
-        <p className="click-list" onClick={e => this.getSongNames(e, trackLink)} key={pl.id}>
+        <p
+          className="click-list"
+          onClick={e => this.props.getSongNames(e, trackLink)}
+          key={pl.id}
+        >
           {pl.name}
         </p>
       );
@@ -64,16 +67,16 @@ export class Playlists extends Component {
       <div className="playlist-main">
         <div className="grid-container">
           <div className="grid-item playlist-grid">
-              <h3>Playlists: </h3>
-          {this.listOfPlaylists()}
+            <h3>Playlists: </h3>
+            {this.listOfPlaylists()}
           </div>
           <div className="grid-item">
-          <h3>Tracks: </h3>
-          {/* {this.displayTrackNames()} */}
+            <h3>Tracks: </h3>
+            {/* {this.displayTrackNames()} */}
           </div>
           <div className="grid-item">
-          <h3>Artist: </h3>
-          {/* {this.displayArtistNames()} */}
+            <h3>Artist: </h3>
+            {/* {this.displayArtistNames()} */}
           </div>
         </div>
       </div>

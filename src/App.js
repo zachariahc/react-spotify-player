@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
-import { getUserID } from "./utils";
+import { getUserID, getPlaylistTracks } from "./utils";
 import hash from "./hash";
 import Player from "./components/Player";
 import Playlists from "./components/Playlists";
@@ -31,7 +31,9 @@ class App extends Component {
       userImage: "",
       tracks: [],
       url: "",
-      timeOfSong: ""
+      timeOfSong: "",
+      albums: [],
+      artistNames: []
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -102,6 +104,29 @@ class App extends Component {
     }
   };
 
+  getSongNames = async (e, url) => {
+    let token = hash.access_token;
+    e.preventDefault();
+    const { tracks } = await getPlaylistTracks(token, url.link);
+    const trackArray = [];
+
+    const trackInfo = tracks.map(trackName => {
+      const namesOfAlbums = trackName.track;
+      trackArray.push({ name: namesOfAlbums.name });
+      this.setState({ albums: trackArray });
+      return namesOfAlbums;
+    });
+
+    const nameArray = [];
+    trackInfo.map(names => {
+      names.artists.map(names => {
+        return nameArray.push({ name: names.name, id: names.id });
+      });
+      this.setState({ artistNames: nameArray });
+      return names;
+    });
+  }
+
   render() {
     const {
       playlists,
@@ -147,6 +172,7 @@ class App extends Component {
                     <Playlists
                       playlists={playlists}
                       tracks={tracks}
+                      getSongNames={this.getSongNames}
                     />
                 </div>
                 <div>
