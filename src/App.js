@@ -3,10 +3,9 @@ import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import { getUserID, getPlaylistTracks } from "./utils";
 import hash from "./hash";
 import Player from "./components/Player";
-import Playlists from "./components/Playlists";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
-import PlaylistSongs from './components/PlaylistSongs';
+import PlaylistSongs from "./components/PlaylistSongs";
 import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
@@ -126,7 +125,7 @@ class App extends Component {
       this.setState({ artistNames: nameArray });
       return names;
     });
-  }
+  };
 
   render() {
     const {
@@ -145,26 +144,23 @@ class App extends Component {
         <header className="">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
+            <div className="flex-container">
+              <div className="side-containers"></div>
 
-              <div className="flex-container">
-
-                <div className="side-containers"></div>
-                
-                <div className="center-container">
-                  {" "}
-                  <a
-                    className="btn btn--login App-link"
-                    href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                      "%20"
-                    )}&response_type=token&show_dialog=true`}
-                  >
-                    Login to Spotify
-                  </a>
-                </div>
-
-                <div className="side-containers"></div>
+              <div className="center-container">
+                {" "}
+                <a
+                  className="btn btn--login App-link"
+                  href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                    "%20"
+                  )}&response_type=token&show_dialog=true`}
+                >
+                  Login to Spotify
+                </a>
               </div>
 
+              <div className="side-containers"></div>
+            </div>
           )}
           {this.state.token && (
             <div>
@@ -172,31 +168,25 @@ class App extends Component {
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}
+                playlists={playlists}
+                tracks={tracks}
+                getSongNames={this.getSongNames}
               />
               <div className="flex-container">
-
-                <div className="side-containers" >
-                    <Playlists
-                      playlists={playlists}
-                      tracks={tracks}
-                      getSongNames={this.getSongNames}
-                    />
+                <div className="side-containers">
+                <div className="placeholder-div"></div>
                 </div>
                 <div>
-                <Player
-                item={item}
-                is_playing={is_playing}
-                progress_ms={progress_ms}
-              />
-              <PlaylistSongs 
-              albums={albums}
-              artistNames={artistNames}
-              />
+                  <Player
+                    item={item}
+                    is_playing={is_playing}
+                    progress_ms={progress_ms}
+                  />
+                  <PlaylistSongs albums={albums} artistNames={artistNames} />
                 </div>
-                <div className="side-containers" >
+                <div className="side-containers">
                   <SearchBar />
                 </div>
-
               </div>
             </div>
           )}

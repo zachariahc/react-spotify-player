@@ -6,27 +6,27 @@ export class PlaylistSongs extends Component {
   displayArtistNames() {
     const { artistNames } = this.props;
     return artistNames.map(name => {
-      return <p className="track-artist" key={uniqid()}>{name.name}</p>;
+      return <p className="track-artist-song" key={uniqid()}>{name.name}</p>;
     });
   }
 
   displayTrackNames() {
     const { albums } = this.props;
     return albums.map(name => {
-      return <p className="track-artist" key={uniqid()}>{name.name}</p>;
+      return <p className="track-artist-song" key={uniqid()}>{name.name}</p>;
     });
   }
     render() {
         return (
      <div>
         <div className="playlist-songs-grid-container">
-
+            
           <div className="playlist-songs-grid-item">
-            <h3>Artist: </h3>
+            <h4>Artist: </h4>
             {this.displayArtistNames()}
           </div>
           <div className="playlist-songs-grid-item">
-            <h3>Track: </h3>
+            <h4>Track: </h4>
             {this.displayTrackNames()}
           </div>
 

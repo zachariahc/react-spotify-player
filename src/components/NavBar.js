@@ -8,6 +8,21 @@ export class NavBar extends Component {
   state = {
     navOpen: false
   };
+  listOfPlaylists() {
+    const { playlists } = this.props;
+    return playlists.map(pl => {
+      const trackLink = { link: pl.tracks.href };
+      return (
+        <p
+          className="click-list"
+          onClick={e => this.props.getSongNames(e, trackLink)}
+          key={pl.id}
+        >
+          {pl.name}
+        </p>
+      );
+    });
+  }
   openNav = () => {
     document.getElementById("mySidenav").style.width = "250px";
     this.setState({ navOpen: true });
@@ -32,16 +47,17 @@ export class NavBar extends Component {
             &#9776;
           </span>
         )}
+        
         <div id="mySidenav" className="sidenav">
           <p className="closebtn" onClick={this.closeNav}>
             &times;
           </p>
           <img className="avatar" alt="profile avatar" src={userImage} />
           <p className="username">{displayName}</p>
-          <Link to="/playlists">Playlists</Link>
-          <Link to="/">Nav 2</Link>
-          <Link to="/">Nav 3</Link>
-          <Link to="/">Nav 4</Link>
+          <hr />
+          <h5 className="menu-header">Playlists:</h5>
+          <hr />
+          {this.listOfPlaylists()}
           <Link
             to="/"
             onClick={() => this.props.currentlyPlaying(hash.access_token)}

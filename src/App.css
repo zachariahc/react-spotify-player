@@ -22,6 +22,14 @@
 .side-containers {
   flex-basis: 25vw;
   overflow: scroll;
+  height: 100vh;
+  opacity: .9;
+}
+
+.placeholder-div {
+  height: 100%;
+  background-color: rgb(4, 0, 14);
+  opacity: .9;
 }
 
 * {
@@ -32,6 +40,11 @@
 
 html, body {
   height: 100%;
+  background: url('https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 body {
@@ -40,6 +53,7 @@ body {
   font-family: Helvetica, Arial;
   font-size: 3vmin;
 }
+
 
 /** Buttons **/
 

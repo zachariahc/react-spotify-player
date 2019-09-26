@@ -14,15 +14,10 @@
 h3 {
   margin: .5em;
 }
-
-.track-artist, .click-list {
-  margin: .5em;
+.track-artist {
+  font-size: 1em;
 }
 
-.click-list:hover {
-  color: grey;
-  cursor: pointer;
-}
 @media only screen and (max-width: 900px) {
     .playlist-main {
         text-align: center;

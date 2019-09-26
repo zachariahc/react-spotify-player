@@ -39,18 +39,19 @@ class Player extends Component {
                 : RecordPlaceholder
             }
           />
+          <p className="now-playing" >Now Playing: {this.props.item.name} By: {this.props.item.artists[0].name}</p>
         </div>
-        <div>
-          <p>Now Playing: </p>
-          <div className="now-playing__name">{this.props.item.name}</div>
-          <p>By: </p>
-          <div className="now-playing__artist">
+        {/* <div> */}
+          {/* <p>Now Playing: {this.props.item.name}</p> */}
+          {/* <div className="now-playing__name">{this.props.item.name}</div> */}
+          {/* <p>By: {this.props.item.artists[0].name}</p> */}
+          {/* <div className="now-playing__artist">
             {this.props.item.artists[0].name}
-          </div>
-          <div className="progress">
-            <div className="progress__bar" style={this.state.progress} />
-          </div>
-        </div>
+          </div> */}
+          {/* <div className="progress"> */}
+            {/* <div className="progress__bar" style={this.state.progress} /> */}
+          {/* </div> */}
+        {/* </div> */}
       </div>
     );
   }

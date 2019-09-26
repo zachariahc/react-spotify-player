@@ -1,3 +1,14 @@
 .search-font {
     font-size: .75em;
 }
+
+.main-bar {
+    height: 100%;
+    background-color: rgb(4, 0, 14);
+    opacity: .9;
+
+    /* height: 100vh;
+    background-color: rgb(100, 100, 100);
+    margin: .75em;
+    opacity: .9; */ 
+}

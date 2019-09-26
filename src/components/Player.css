@@ -1,41 +1,6 @@
-/** Now Playing **/
-/* .now-playing_title {
-     margin: .5em;
-     float: left; 
+.now-playing {
+    font-size: 60%;
 }
-
-.now-playing__name {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
-}
-
-.now-playing__artist {
-    margin-bottom: 1em;
-}
-
-.now-playing__status {
-    margin-bottom: 1em;
-} */
-/* 
-.now-playing__img {
-    float: left;
-    margin-right: 10px;
-    text-align: right;
-    width: 45%;
-} */
-
-/* .now-playing__img img {
-    max-width: 20vmin;
-    width: 50%;
-} */
-
-/* .now-playing__side { */
-    /* margin-left: 5%; */
-    /* width: 45%; */
-/* } */
-
-/** Progress **/
-
 .progress {
     border: 1px solid #eee;
     height: 6px;
