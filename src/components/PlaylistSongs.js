@@ -22,11 +22,11 @@ export class PlaylistSongs extends Component {
         <div className="playlist-songs-grid-container">
             
           <div className="playlist-songs-grid-item">
-            <h4>Artist: </h4>
+            <p>Artist: </p>
             {this.displayArtistNames()}
           </div>
           <div className="playlist-songs-grid-item">
-            <h4>Track: </h4>
+            <p>Track: </p>
             {this.displayTrackNames()}
           </div>
 

@@ -50,20 +50,8 @@ export default function MainGrid(props) {
         <Grid item xs={12} sm={6}>
               <SearchBar/>
         </Grid>
-        {/* Leaving grid exmple in for now */}
-        {/* <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid> */}
       </Grid>
+      
     </div>
   );
 }

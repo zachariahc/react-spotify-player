@@ -34,9 +34,9 @@ export class SearchBar extends Component {
   render() {
     return (
       <div className="main-bar">
-        {/* <input  onChange={e => this.searchInput(e)}></input> */}
         <div className="search-controls">
           <div>
+            <p>Search for song: </p>
             <input
               className="search-input"
               type="text"
