@@ -35,19 +35,32 @@ export class SearchBar extends Component {
     return (
       <div className="main-bar">
         {/* <input  onChange={e => this.searchInput(e)}></input> */}
-        <input
-          type="text"
-          placeholder="Search.."
-          onChange={e =>
-            this.setState({
-              searchQuery: e.target.value
-            })
-          }
-          onSubmit={this.logState}
-        />
-        <button type="submit" onClick={this.logState}>
-          Search
-        </button>
+        <div className="search-controls">
+          <div>
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search.."
+              onChange={e =>
+                this.setState({
+                  searchQuery: e.target.value
+                })
+              }
+              onSubmit={this.logState}
+            />
+          </div>
+
+          <div>
+            <button
+              className="search-button"
+              type="submit"
+              onClick={this.logState}
+            >
+              Search
+            </button>
+          </div>
+        </div>
+
         <div>{this.displayResults()}</div>
       </div>
     );
