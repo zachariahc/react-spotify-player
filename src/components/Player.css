@@ -31,11 +31,11 @@ img {
   .flex-container-player > div {
     width: 50%;
     margin: 1em;
-    height: 47vh;
+    height: 55vh;
   }
 
-  .artist-name {
+  /* .artist-name {
       color: rgb(255, 255, 255);
       font-size: 1.25em;
       margin: .25em;
-  }
+  } */

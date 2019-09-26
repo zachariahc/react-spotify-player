@@ -46,9 +46,9 @@ class Player extends Component {
               {this.props.item.artists[0].name}
             </span>
           </p>
-          <div className="progress">
+          {/* <div className="progress">
         <div className="progress__bar" style={this.state.progress} />
-        </div>
+        </div> */}
         </div>
         {/* <div> */}
         {/* <p>Now Playing: {this.props.item.name}</p> */}
