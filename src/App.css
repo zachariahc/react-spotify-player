@@ -1,8 +1,6 @@
 
 .flex-container {
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
 .flex-container > div {
@@ -16,7 +14,7 @@
 }
 
 .center-container {
-  line-height: 50vh !important;
+  line-height: 25vh !important;
 }
 
 .side-containers {

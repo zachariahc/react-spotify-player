@@ -22,8 +22,11 @@
 }
 
 .main-bar {
-    height: 100%;
-    background-color: rgb(4, 0, 14);
-    opacity: .9;
+    background-color: rgba(48, 48, 48, .75);
+    height: 37vh;
+    opacity: .85;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px 10px 0px 0px;
     overflow: scroll;
 }

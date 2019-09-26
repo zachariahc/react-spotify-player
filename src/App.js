@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import { getUserID, getPlaylistTracks } from "./utils";
 import hash from "./hash";
-import Player from "./components/Player";
+import MainLayout from './components/MainLayout';
 import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
-import PlaylistSongs from "./components/PlaylistSongs";
 import axios from "axios";
-import { Switch, Route } from "react-router-dom";
-
+import record from './assets/images/record-player.png'
 import "./App.css";
 
 class App extends Component {
+  
   constructor() {
     super();
     this.state = {
@@ -50,6 +48,8 @@ class App extends Component {
       this.getUserPlaylists(token);
     }
   }
+
+  
   getCurrentlyPlaying = async token => {
     const params = {
       headers: { Authorization: "Bearer " + token }
@@ -139,10 +139,10 @@ class App extends Component {
       albums,
       artistNames
     } = this.state;
+    
     return (
       <div className="">
         <header className="">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
             <div className="flex-container">
               <div className="side-containers"></div>
@@ -163,8 +163,8 @@ class App extends Component {
             </div>
           )}
           {this.state.token && (
-            <div>
-              <NavBar
+            <React.Fragment>
+            <NavBar
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}
@@ -172,23 +172,20 @@ class App extends Component {
                 tracks={tracks}
                 getSongNames={this.getSongNames}
               />
-              <div className="flex-container">
-                <div className="side-containers">
-                <div className="placeholder-div"></div>
-                </div>
-                <div>
-                  <Player
-                    item={item}
-                    is_playing={is_playing}
-                    progress_ms={progress_ms}
-                  />
-                  <PlaylistSongs albums={albums} artistNames={artistNames} />
-                </div>
-                <div className="side-containers">
-                  <SearchBar />
-                </div>
-              </div>
-            </div>
+            <MainLayout
+                userImage={userImage}
+                displayName={displayName}
+                currentlyPlaying={this.getCurrentlyPlaying}
+                playlists={playlists}
+                tracks={tracks}
+                getSongNames={this.getSongNames}
+                item={item}
+                is_playing={is_playing}
+                progress_ms={progress_ms}
+                albums={albums} 
+                artistNames={artistNames}
+             />
+             </React.Fragment>
           )}
         </header>
       </div>
