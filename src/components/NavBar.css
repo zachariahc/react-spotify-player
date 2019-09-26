@@ -11,8 +11,23 @@
     transition: 0.5s;
     padding-top: 60px;
     opacity: .8;
+    box-shadow: 2px 3px 5px rgb(61, 61, 61);
+  }
+
+  hr {
+    height: 2px;
+    background-color: #424242;
+    border: none;
   }
   
+  .menu-header {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+  }
+
   .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -40,7 +55,9 @@
       top: 0;
       left: 0;
       margin-left: .5em;
+      font-size: 1.75em;
       cursor: pointer;
+      z-index: 5;
   }
 
   .avatar {
@@ -51,9 +68,24 @@
     
   }
   .username {
-      font-size: .6em;
+      font-size: 1rem;
       padding: 8px 8px 8px 32px;
   }
+
+  .click-list {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .click-list:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}

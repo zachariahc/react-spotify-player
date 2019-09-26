@@ -1,42 +1,11 @@
-/** Now Playing **/
-/* .now-playing_title {
-     margin: .5em;
-     float: left; 
+.now-playing {
+    font-size: 60%;
+    background-color: rgba(32, 32, 32, .2);
+    border-radius: 3em;
+    color: rgba(255, 255, 255, .75);
 }
-
-.now-playing__name {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
-}
-
-.now-playing__artist {
-    margin-bottom: 1em;
-}
-
-.now-playing__status {
-    margin-bottom: 1em;
-} */
-/* 
-.now-playing__img {
-    float: left;
-    margin-right: 10px;
-    text-align: right;
-    width: 45%;
-} */
-
-/* .now-playing__img img {
-    max-width: 20vmin;
-    width: 50%;
-} */
-
-/* .now-playing__side { */
-    /* margin-left: 5%; */
-    /* width: 45%; */
-/* } */
-
-/** Progress **/
-
 .progress {
+    margin: .5em;
     border: 1px solid #eee;
     height: 6px;
     border-radius: 3px;
@@ -62,5 +31,11 @@ img {
   .flex-container-player > div {
     width: 50%;
     margin: 1em;
-    height: 100vh;
+    height: 55vh;
   }
+
+  /* .artist-name {
+      color: rgb(255, 255, 255);
+      font-size: 1.25em;
+      margin: .25em;
+  } */

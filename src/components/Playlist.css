@@ -5,35 +5,19 @@
     margin-bottom: .3em;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* background-color: #2196F3; */
-  margin: 0 auto;
-  padding: 10px;
-  width: 50.5rem;
-}
-.grid-item {
-  /* background-color: rgba(20, 20, 20, 0.8); */
-  /* border: 1px solid rgba(0, 0, 0, 0.8); */
+.playlist-item {
   padding: 20px;
   font-size: 15px;
   text-align: center;
   width: 100%;
-  /* cursor: pointer; */
 }
 h3 {
   margin: .5em;
 }
-
-.track-artist, .click-list {
-  margin: .5em;
+.track-artist {
+  font-size: 1em;
 }
 
-.click-list:hover {
-  color: grey;
-  cursor: pointer;
-}
 @media only screen and (max-width: 900px) {
     .playlist-main {
         text-align: center;

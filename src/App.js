@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
-import { getUserID } from "./utils";
+import { getUserID, getPlaylistTracks } from "./utils";
 import hash from "./hash";
 import Player from "./components/Player";
-import Playlists from "./components/Playlists";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
+import PlaylistSongs from "./components/PlaylistSongs";
 import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
@@ -31,7 +31,9 @@ class App extends Component {
       userImage: "",
       tracks: [],
       url: "",
-      timeOfSong: ""
+      timeOfSong: "",
+      albums: [],
+      artistNames: []
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -102,6 +104,29 @@ class App extends Component {
     }
   };
 
+  getSongNames = async (e, url) => {
+    let token = hash.access_token;
+    e.preventDefault();
+    const { tracks } = await getPlaylistTracks(token, url.link);
+    const trackArray = [];
+
+    const trackInfo = tracks.map(trackName => {
+      const namesOfAlbums = trackName.track;
+      trackArray.push({ name: namesOfAlbums.name });
+      this.setState({ albums: trackArray });
+      return namesOfAlbums;
+    });
+
+    const nameArray = [];
+    trackInfo.map(names => {
+      names.artists.map(names => {
+        return nameArray.push({ name: names.name, id: names.id });
+      });
+      this.setState({ artistNames: nameArray });
+      return names;
+    });
+  };
+
   render() {
     const {
       playlists,
@@ -110,30 +135,32 @@ class App extends Component {
       progress_ms,
       userImage,
       displayName,
-      tracks
+      tracks,
+      albums,
+      artistNames
     } = this.state;
     return (
       <div className="">
         <header className="">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           {!this.state.token && (
+            <div className="flex-container">
+              <div className="side-containers"></div>
 
-              <div className="flex-container">
-                <div className="side-containers" >1</div>
-                <div>
-                  {" "}
-                  <a
-                    className="btn btn--login App-link"
-                    href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                      "%20"
-                    )}&response_type=token&show_dialog=true`}
-                  >
-                    Login to Spotify
-                  </a>
-                </div>
-                <div className="side-containers" >3</div>
+              <div className="center-container">
+                {" "}
+                <a
+                  className="btn btn--login App-link"
+                  href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
+                    "%20"
+                  )}&response_type=token&show_dialog=true`}
+                >
+                  Login to Spotify
+                </a>
               </div>
 
+              <div className="side-containers"></div>
+            </div>
           )}
           {this.state.token && (
             <div>
@@ -141,22 +168,23 @@ class App extends Component {
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}
+                playlists={playlists}
+                tracks={tracks}
+                getSongNames={this.getSongNames}
               />
               <div className="flex-container">
-                <div className="side-containers" >
-                    <Playlists
-                      playlists={playlists}
-                      tracks={tracks}
-                    />
+                <div className="side-containers">
+                <div className="placeholder-div"></div>
                 </div>
                 <div>
-                <Player
-                item={item}
-                is_playing={is_playing}
-                progress_ms={progress_ms}
-              />
+                  <Player
+                    item={item}
+                    is_playing={is_playing}
+                    progress_ms={progress_ms}
+                  />
+                  <PlaylistSongs albums={albums} artistNames={artistNames} />
                 </div>
-                <div className="side-containers" >
+                <div className="side-containers">
                   <SearchBar />
                 </div>
               </div>
