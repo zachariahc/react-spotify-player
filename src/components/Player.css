@@ -1,49 +1,38 @@
-/** Now Playing **/
-.now-playing_title {
-     margin: .5em;
-     float: left; 
+.now-playing {
+    font-size: 60%;
+    background-color: rgba(32, 32, 32, .2);
+    padding: 1em;
+    margin: 1em;
+    border-radius: 3em;
+    color: rgba(255, 255, 255, .75);
+    text-align: center;
 }
 
-.now-playing__name {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
+img {
+    height: 12em;
+    width: 12em;
+    display: block;
+    margin: 0 auto;
 }
 
-.now-playing__artist {
-    margin-bottom: 1em;
-}
+.flex-container-player {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .85;
+    border-radius: 5px;
+  }
 
-.now-playing__status {
-    margin-bottom: 1em;
-}
+  @media only screen and (max-width: 600px) {
+    .now-playing {
+        font-size: 1.5em;
 
-.now-playing__img {
-    float: left;
-    margin-right: 10px;
-    text-align: right;
-    width: 45%;
-}
+    }
 
-.now-playing__img img {
-    max-width: 80vmin;
-    width: 100%;
-}
-
-.now-playing__side {
-    margin-left: 5%;
-    width: 45%;
-}
-
-/** Progress **/
-
-.progress {
-    border: 1px solid #eee;
-    height: 6px;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.progress__bar {
-    background-color: #eee;
-    height: 4px;
-}
+    img {
+        height: 15em;
+        width: 15em; 
+    }
+  }
+  

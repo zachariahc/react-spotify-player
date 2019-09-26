@@ -28,32 +28,25 @@ class Player extends Component {
 
   render() {
     return (
-      <div>
-        { this.props.item ?
-          <div className="main-wrapper">
-            <div className="now-playing__img">
-            <p className="now-playing_title">Now Playing: </p>
-              <img
-                alt="album cover art"
-                src={
-                  this.state.background.backgroundImage !== "url()"
-                    ? this.props.item.album.images[0].url
-                    : RecordPlaceholder
-                }
-              />
-            </div>
-            <div className="now-playing__side">
-              <div className="now-playing__name">{this.props.item.name}</div>
-              <div className="now-playing__artist">
-                {this.props.item.artists[0].name}
-              </div>
-              <div className="progress">
-                <div className="progress__bar" style={this.state.progress} />
-              </div>
-            </div>
-            <div className="background" style={this.state.background} />{" "}
-          </div> : <p>Commercial Break or No Song Playing</p>
-        }
+      <div className="flex-container-player">
+        <div>
+          {" "}
+          <img
+            alt="album cover art"
+            src={
+              this.state.background.backgroundImage !== "url()"
+                ? this.props.item.album.images[0].url
+                : RecordPlaceholder
+            }
+          />
+          <p className="now-playing">
+            Now Playing:{" "}
+            <span className="artist-name">{this.props.item.name}</span> By:{" "}
+            <span className="artist-name">
+              {this.props.item.artists[0].name}
+            </span>
+          </p>
+        </div>
       </div>
     );
   }

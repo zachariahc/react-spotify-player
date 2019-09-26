@@ -1,0 +1,52 @@
+.search-font {
+    font-size: .7em;
+    margin: .5em;
+}
+
+.search-font:hover {
+    color: #818181;
+    cursor: pointer;
+}
+
+.search-controls {
+    display: flex;
+    flex-direction: column;
+}
+.search-input {
+    margin: 1em;
+    width: 80%;
+    height: 2.5em;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.search-button {
+    width: 80%;
+    height: 2.5em;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    border: 2px solid white;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.main-bar {
+    background-color: rgba(48, 48, 48, .75);
+    height: 37vh;
+    opacity: .85;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px 10px 0px 0px;
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 900px) {
+    .search-font {
+        margin: .75;
+        font-size: 1.25em;
+    }
+  }

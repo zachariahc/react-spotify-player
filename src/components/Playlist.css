@@ -1,9 +1,21 @@
-.playlist-main {
-  /* border: 1px solid red; */
-}
+
 .playlist-header {
     margin-bottom: .3em;
 }
+
+.playlist-item {
+  padding: 20px;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+}
+h3 {
+  margin: .5em;
+}
+.track-artist {
+  font-size: 1em;
+}
+
 @media only screen and (max-width: 900px) {
     .playlist-main {
         text-align: center;
