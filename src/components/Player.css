@@ -1,7 +1,11 @@
 .now-playing {
     font-size: 60%;
+    background-color: rgba(32, 32, 32, .2);
+    border-radius: 3em;
+    color: rgba(255, 255, 255, .75);
 }
 .progress {
+    margin: .5em;
     border: 1px solid #eee;
     height: 6px;
     border-radius: 3px;
@@ -28,4 +32,10 @@ img {
     width: 50%;
     margin: 1em;
     height: 47vh;
+  }
+
+  .artist-name {
+      color: rgb(255, 255, 255);
+      font-size: 1.25em;
+      margin: .25em;
   }

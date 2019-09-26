@@ -8,7 +8,7 @@ export class SearchBar extends Component {
     searchQuery: "",
     results: []
   };
-  logState = async () => {
+  submitSearch = async () => {
     const { searchQuery } = this.state;
     let token = hash.access_token;
     const data = await getSearchResults(token, searchQuery);
@@ -46,7 +46,6 @@ export class SearchBar extends Component {
                   searchQuery: e.target.value
                 })
               }
-              onSubmit={this.logState}
             />
           </div>
 
@@ -54,7 +53,7 @@ export class SearchBar extends Component {
             <button
               className="search-button"
               type="submit"
-              onClick={this.logState}
+              onClick={this.submitSearch}
             >
               Search
             </button>
