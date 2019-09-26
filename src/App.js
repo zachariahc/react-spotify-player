@@ -6,6 +6,7 @@ import Player from "./components/Player";
 import Playlists from "./components/Playlists";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
+import PlaylistSongs from './components/PlaylistSongs';
 import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
@@ -135,7 +136,9 @@ class App extends Component {
       progress_ms,
       userImage,
       displayName,
-      tracks
+      tracks,
+      albums,
+      artistNames
     } = this.state;
     return (
       <div className="">
@@ -144,8 +147,10 @@ class App extends Component {
           {!this.state.token && (
 
               <div className="flex-container">
-                <div className="side-containers" >1</div>
-                <div>
+
+                <div className="side-containers"></div>
+                
+                <div className="center-container">
                   {" "}
                   <a
                     className="btn btn--login App-link"
@@ -156,7 +161,8 @@ class App extends Component {
                     Login to Spotify
                   </a>
                 </div>
-                <div className="side-containers" >3</div>
+
+                <div className="side-containers"></div>
               </div>
 
           )}
@@ -168,6 +174,7 @@ class App extends Component {
                 currentlyPlaying={this.getCurrentlyPlaying}
               />
               <div className="flex-container">
+
                 <div className="side-containers" >
                     <Playlists
                       playlists={playlists}
@@ -181,10 +188,15 @@ class App extends Component {
                 is_playing={is_playing}
                 progress_ms={progress_ms}
               />
+              <PlaylistSongs 
+              albums={albums}
+              artistNames={artistNames}
+              />
                 </div>
                 <div className="side-containers" >
                   <SearchBar />
                 </div>
+
               </div>
             </div>
           )}

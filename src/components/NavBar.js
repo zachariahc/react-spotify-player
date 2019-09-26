@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Playlists from './Playlists';
 import hash from "../hash";
 import "./NavBar.css";
 
