@@ -40,7 +40,7 @@ export class SearchBar extends Component {
             <input
               className="search-input"
               type="text"
-              placeholder="Search.."
+              placeholder="Enter a song to search for..."
               onChange={e =>
                 this.setState({
                   searchQuery: e.target.value

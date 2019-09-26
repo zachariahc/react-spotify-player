@@ -146,7 +146,6 @@ class App extends Component {
           {!this.state.token && (
             <div className="flex-container">
               <div className="side-containers"></div>
-
               <div className="center-container">
                 {" "}
                 <a
@@ -158,7 +157,6 @@ class App extends Component {
                   Login to Spotify
                 </a>
               </div>
-
               <div className="side-containers"></div>
             </div>
           )}
