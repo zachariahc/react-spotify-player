@@ -1,22 +1,26 @@
 .playlist-songs-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* border: 1px solid red; */
     width: 100%;
     height: 38vh;
 }
 
 .playlist-songs-grid-item {
-    /* border: 1px dotted rgb(0, 255, 64); */
-    background-color: rgb(64, 149, 155);
-    opacity: .85;
+    background-color: rgba(48, 48, 48, .75);
     border-radius: 5px;
-    border: 1px solid rgb(128, 128, 128);
-    box-shadow: 1px 2px 5px rgb(83, 83, 83);
-    margin: 10px 10px 0px 10px;
+    text-align: center;
+    margin: 10px 0px 0px 10px;
     overflow: scroll;
 }
 
 .track-artist-song {
-    font-size: .5em;
+    margin: .5em;
+    font-size: .75em;
 }
+
+@media only screen and (max-width: 600px) {
+    .track-artist-song {
+        font-size: 1.25em;
+
+    }
+  }

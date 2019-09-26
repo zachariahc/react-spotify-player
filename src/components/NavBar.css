@@ -1,92 +1,99 @@
+.nav-header {
+  height: 2em;
+  line-height: 1.25em;
+  background-color: rgba(32, 32, 32, 0.7);
+}
+
+.playlist-header {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
 
 .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    opacity: .8;
-    box-shadow: 2px 3px 5px rgb(61, 61, 61);
-  }
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  opacity: 0.8;
+  box-shadow: 2px 3px 5px rgb(61, 61, 61);
+}
 
-  hr {
-    height: 2px;
-    background-color: #424242;
-    border: none;
-  }
-  
-  .menu-header {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ffffff;
-    display: block;
-  }
+hr {
+  height: 2px;
+  background-color: #424242;
+  border: none;
+}
 
+.menu-header {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.avatar {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
+  margin-left: 1.75rem;
+}
+.username {
+  font-size: 1rem;
+  padding: 8px 8px 8px 32px;
+}
+
+.click-list {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.click-list:hover {
+  color: rgb(66, 66, 66);
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
   .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+    font-size: 18px;
   }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    cursor: pointer;
-  }
-  
-  .menu-toggle {
-      position: fixed;
-      top: 0;
-      left: 0;
-      margin-left: .5em;
-      font-size: 1.75em;
-      cursor: pointer;
-      z-index: 5;
-  }
-
-  .avatar {
-    height:2.5em;
-    width: 2.5em; 
-    border-radius: 50%;
-    margin-left: 1.75rem;
-    
-  }
-  .username {
-      font-size: 1rem;
-      padding: 8px 8px 8px 32px;
-  }
-
-  .click-list {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .click-list:hover {
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+}
