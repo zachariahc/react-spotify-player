@@ -5,7 +5,6 @@ import hash from "./hash";
 import MainLayout from './components/MainLayout';
 import NavBar from "./components/NavBar";
 import axios from "axios";
-import record from './assets/images/record-player.png'
 import "./App.css";
 
 class App extends Component {

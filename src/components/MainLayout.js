@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import SearchBar from "./SearchBar";
 import PlaylistSongs from "./PlaylistSongs";
 import Player from "./Player";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
@@ -19,13 +18,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function MainGrid(props) {
   const {
-    playlists,
     item,
     is_playing,
     progress_ms,
-    userImage,
-    displayName,
-    tracks,
     albums,
     artistNames
   } = props;

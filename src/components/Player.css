@@ -23,3 +23,16 @@ img {
     opacity: .85;
     border-radius: 5px;
   }
+
+  @media only screen and (max-width: 600px) {
+    .now-playing {
+        font-size: 1.5em;
+
+    }
+
+    img {
+        height: 15em;
+        width: 15em; 
+    }
+  }
+  

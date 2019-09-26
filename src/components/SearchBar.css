@@ -1,5 +1,6 @@
 .search-font {
     font-size: .7em;
+    margin: .5em;
 }
 
 .search-font:hover {
@@ -12,6 +13,7 @@
     flex-direction: column;
 }
 .search-input {
+    margin: 1em;
     width: 80%;
     height: 2.5em;
     border: none;
@@ -41,3 +43,10 @@
     margin: 10px 10px 0px 0px;
     overflow: scroll;
 }
+
+@media only screen and (max-width: 900px) {
+    .search-font {
+        margin: .75;
+        font-size: 1.25em;
+    }
+  }

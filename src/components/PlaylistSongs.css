@@ -14,6 +14,13 @@
 }
 
 .track-artist-song {
-    margin: .25em;
-    font-size: .5em;
+    margin: .5em;
+    font-size: .75em;
 }
+
+@media only screen and (max-width: 600px) {
+    .track-artist-song {
+        font-size: 1.25em;
+
+    }
+  }
