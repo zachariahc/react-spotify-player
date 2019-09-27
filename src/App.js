@@ -50,6 +50,7 @@ class App extends Component {
 
   
   getCurrentlyPlaying = async token => {
+   
     const params = {
       headers: { Authorization: "Bearer " + token }
     };
@@ -58,7 +59,7 @@ class App extends Component {
         "https://api.spotify.com/v1/me/player",
         params
       );
-      if (data.is_playing) {
+      if (data.is_playing && data.item.duration_ms !== null) {
         this.setState({
           item: data.item,
           is_playing: data.is_playing,
@@ -83,6 +84,7 @@ class App extends Component {
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
       );
+      console.log(data.items)
       this.setState({
         playlists: data.items,
         displayName: displayName,
@@ -136,7 +138,8 @@ class App extends Component {
       displayName,
       tracks,
       albums,
-      artistNames
+      artistNames,
+      token
     } = this.state;
     
     return (
@@ -170,6 +173,7 @@ class App extends Component {
                 getSongNames={this.getSongNames}
               />
             <MainLayout
+                token={token}
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}

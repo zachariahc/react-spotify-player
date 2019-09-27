@@ -42,3 +42,20 @@ export async function getPlaylistTracks(token, playlist_url) {
     console.error(err);
   }
 }
+
+export async function addSongToPlaylist(token, trackUri) {
+  // console.log("token in index utils", token)
+  console.log(("track uri in index utils", trackUri.trackUri))
+  console.log(token)
+  const params = {
+    headers: { Authorization: "Bearer " + token }
+  };
+  try {
+    const { data } = await axios.post(`https://api.spotify.com/v1/playlists/6JTqzWCvkqridgNloB3DEp/tracks?uris=spotify%3Atrack%3A6ktyZo4Wjc6zTHnLuvmIDU`, params);
+    console.log("This is data in index utils", data)
+    return data
+  } catch (err) {
+    console.error(err);
+    console.error(err.message);
+  }
+}
