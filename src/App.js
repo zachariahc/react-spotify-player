@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import { getUserID, getPlaylistTracks } from "./utils";
 import hash from "./hash";
-import MainLayout from './components/MainLayout';
+import MainLayout from "./components/MainLayout";
 import NavBar from "./components/NavBar";
 import axios from "axios";
 import "./App.css";
 
 class App extends Component {
-  
   constructor() {
     super();
     this.state = {
@@ -37,18 +36,36 @@ class App extends Component {
 
   componentDidMount() {
     // Set token
+    // Checking current UTC time
+    // let timeCheck = new Date()
+    // let timeToCheck = timeCheck.getTime()
+    // timeCheck.setTime(timeToCheck)
+    // console.log(timeCheck.toUTCString())
+
     let token = hash.access_token;
-    if (token) {
+
+    if (token !== undefined) {
+      var now = new Date();
+      var time = now.getTime();
+      time += 3600 * 1000;
+      now.setTime(time);
+      document.cookie = `token=${token}; expires=${now.toUTCString()}`;
+    }
+
+    const getCookie = document.cookie;
+    const splitCookie = getCookie.split("=");
+    const tokenCheck = splitCookie[1];
+
+    if (tokenCheck) {
       // Set token
       this.setState({
-        token: token
+        token: tokenCheck
       });
-      this.getCurrentlyPlaying(token);
-      this.getUserPlaylists(token);
-    }
+      this.getCurrentlyPlaying(tokenCheck);
+      this.getUserPlaylists(tokenCheck);
+    } 
   }
 
-  
   getCurrentlyPlaying = async token => {
     const params = {
       headers: { Authorization: "Bearer " + token }
@@ -104,7 +121,7 @@ class App extends Component {
   };
 
   getSongNames = async (e, url) => {
-    let token = hash.access_token;
+    const { token } = this.state;
     e.preventDefault();
     const { tracks } = await getPlaylistTracks(token, url.link);
     const trackArray = [];
@@ -136,9 +153,10 @@ class App extends Component {
       displayName,
       tracks,
       albums,
-      artistNames
+      artistNames,
+      token
     } = this.state;
-    
+
     return (
       <div className="">
         <header className="">
@@ -161,7 +179,7 @@ class App extends Component {
           )}
           {this.state.token && (
             <React.Fragment>
-            <NavBar
+              <NavBar
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}
@@ -169,7 +187,7 @@ class App extends Component {
                 tracks={tracks}
                 getSongNames={this.getSongNames}
               />
-            <MainLayout
+              <MainLayout
                 userImage={userImage}
                 displayName={displayName}
                 currentlyPlaying={this.getCurrentlyPlaying}
@@ -179,10 +197,11 @@ class App extends Component {
                 item={item}
                 is_playing={is_playing}
                 progress_ms={progress_ms}
-                albums={albums} 
+                albums={albums}
                 artistNames={artistNames}
-             />
-             </React.Fragment>
+                token={token}
+              />
+            </React.Fragment>
           )}
         </header>
       </div>
