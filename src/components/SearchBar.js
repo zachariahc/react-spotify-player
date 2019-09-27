@@ -26,14 +26,14 @@ export class SearchBar extends Component {
     const pleaseConfirm = window.confirm(`Are you sure you want to add? ${name.name}`)
     // TODO: if user selects true. Add to selected playlist
     if(pleaseConfirm === true){
-      console.log("User selected true", trackId.trackId)
+      // console.log("User selected true", trackId.trackId)
     }
   }
   displayResults = () => {
     const { results } = this.state;
-    console.log(results)
+    // console.log(results)
     return results.map(result => {
-      console.log(result.name)
+      // console.log(result.name)
       const name = { name: result.name}
       const trackId = { trackId: result.id}
       return (

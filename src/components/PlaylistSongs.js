@@ -5,7 +5,7 @@ import "./PlaylistSongs.css";
 export class PlaylistSongs extends Component {
   displayArtistNames() {
     const { artistNames } = this.props;
-    console.log("Loggin artists", artistNames.length);
+    // console.log("Loggin artists", artistNames.length);
     return artistNames.map(name => {
       return (
         <li className="track-artist-song" key={uniqid()}>
@@ -17,7 +17,7 @@ export class PlaylistSongs extends Component {
 
   displayTrackNames() {
     const { albums } = this.props;
-    console.log("Loggin albums", albums.length);
+    // console.log("Loggin albums", albums.length);
     return albums.map(name => {
       return (
         <li className="track-artist-song" key={uniqid()}>
