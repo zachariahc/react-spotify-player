@@ -36,7 +36,13 @@ class App extends Component {
 
   componentDidMount() {
     // Set token
+    let timeCheck = new Date()
+    let timer = timeCheck.getTime()
+    timeCheck.setTime(timer)
+    console.log(timeCheck.toUTCString())
+
     let token = hash.access_token;
+
     if (token !== undefined) {
       var now = new Date();
       var time = now.getTime();
@@ -58,14 +64,7 @@ class App extends Component {
       // localStorage.setItem('token', token)
       this.getCurrentlyPlaying(tokenCheck);
       this.getUserPlaylists(tokenCheck);
-    } else if (token) {
-      this.setState({
-        token: token
-      });
-      // localStorage.setItem('token', token)
-      this.getCurrentlyPlaying(token);
-      this.getUserPlaylists(token);
-    }
+    } 
   }
 
   getCurrentlyPlaying = async token => {
