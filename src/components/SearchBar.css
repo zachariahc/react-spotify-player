@@ -43,7 +43,9 @@
     margin: 10px 10px 0px 0px;
     overflow: scroll;
 }
-
+.playlist-placeholder {
+    margin-top: ;
+}
 @media only screen and (max-width: 900px) {
     .search-font {
         margin: .75;

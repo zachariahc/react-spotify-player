@@ -29,7 +29,9 @@ class App extends Component {
       url: "",
       timeOfSong: "",
       albums: [],
-      artistNames: []
+      artistNames: [],
+      playlistId: '',
+      playlistName: ''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
@@ -122,8 +124,10 @@ class App extends Component {
     }
   };
 
-  getSongNames = async (e, url) => {
+  getSongNames = async (e, url, playlistId, playlistName) => {
     const { token } = this.state;
+    console.log(playlistName, playlistId)
+    this.setState({ playlistId: playlistId.listId, playlistName: playlistName.listname})
     e.preventDefault();
     const { tracks } = await getPlaylistTracks(token, url.link);
     const trackArray = [];
@@ -156,7 +160,9 @@ class App extends Component {
       tracks,
       albums,
       artistNames,
-      token
+      token,
+      playlistId,
+      playlistName
     } = this.state;
 
     return (
@@ -202,6 +208,8 @@ class App extends Component {
                 albums={albums}
                 artistNames={artistNames}
                 token={token}
+                playlistId={playlistId}
+                playlistName={playlistName}
               />
             </React.Fragment>
           )}
