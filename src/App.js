@@ -36,10 +36,11 @@ class App extends Component {
 
   componentDidMount() {
     // Set token
-    let timeCheck = new Date()
-    let timer = timeCheck.getTime()
-    timeCheck.setTime(timer)
-    console.log(timeCheck.toUTCString())
+    // Checking current UTC time
+    // let timeCheck = new Date()
+    // let timeToCheck = timeCheck.getTime()
+    // timeCheck.setTime(timeToCheck)
+    // console.log(timeCheck.toUTCString())
 
     let token = hash.access_token;
 
@@ -48,8 +49,7 @@ class App extends Component {
       var time = now.getTime();
       time += 3600 * 1000;
       now.setTime(time);
-      const setCookie = (document.cookie = `token=${token}; expires=${now.toUTCString()}`);
-      console.log(setCookie);
+      document.cookie = `token=${token}; expires=${now.toUTCString()}`;
     }
 
     const getCookie = document.cookie;
@@ -61,7 +61,6 @@ class App extends Component {
       this.setState({
         token: tokenCheck
       });
-      // localStorage.setItem('token', token)
       this.getCurrentlyPlaying(tokenCheck);
       this.getUserPlaylists(tokenCheck);
     } 
@@ -154,7 +153,8 @@ class App extends Component {
       displayName,
       tracks,
       albums,
-      artistNames
+      artistNames,
+      token
     } = this.state;
 
     return (
@@ -199,6 +199,7 @@ class App extends Component {
                 progress_ms={progress_ms}
                 albums={albums}
                 artistNames={artistNames}
+                token={token}
               />
             </React.Fragment>
           )}

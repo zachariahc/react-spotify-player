@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { getSearchResults } from "../utils";
-import hash from "../hash";
 import "./SearchBar.css";
 
 export class SearchBar extends Component {
@@ -10,7 +9,7 @@ export class SearchBar extends Component {
   };
   submitSearch = async () => {
     const { searchQuery } = this.state;
-    let token = hash.access_token;
+    const { token } = this.props
     const data = await getSearchResults(token, searchQuery);
     const {
       tracks: { items }
