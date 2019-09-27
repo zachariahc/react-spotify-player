@@ -23,7 +23,9 @@ export default function MainGrid(props) {
     progress_ms,
     albums,
     artistNames,
-    token
+    token,
+    playlistName,
+    playlistId
   } = props;
   const classes = useStyles();
 
@@ -44,7 +46,11 @@ export default function MainGrid(props) {
               />
         </Grid>
         <Grid item xs={12} sm={6}>
-              <SearchBar token={token}/>
+              <SearchBar 
+              token={token}
+              playlistName={playlistName}
+              playlistId={playlistId}
+              />
         </Grid>
       </Grid>
       

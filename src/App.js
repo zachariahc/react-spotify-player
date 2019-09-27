@@ -29,21 +29,15 @@ class App extends Component {
       url: "",
       timeOfSong: "",
       albums: [],
-      artistNames: []
+      artistNames: [],
+      playlistId: '',
+      playlistName: ''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
   }
 
   componentDidMount() {
-    // Set token
-    // Checking current UTC time
-    // let timeCheck = new Date()
-    // let timeToCheck = timeCheck.getTime()
-    // timeCheck.setTime(timeToCheck)
-    // console.log(timeCheck.toUTCString())
-
     let token = hash.access_token;
-
     if (token !== undefined) {
       var now = new Date();
       var time = now.getTime();
@@ -51,11 +45,9 @@ class App extends Component {
       now.setTime(time);
       document.cookie = `token=${token}; expires=${now.toUTCString()}`;
     }
-
     const getCookie = document.cookie;
     const splitCookie = getCookie.split("=");
     const tokenCheck = splitCookie[1];
-
     if (tokenCheck) {
       // Set token
       this.setState({
@@ -75,7 +67,7 @@ class App extends Component {
         "https://api.spotify.com/v1/me/player",
         params
       );
-      if (data.is_playing) {
+      if (data.is_playing && data.item.duration_ms !== null) {
         this.setState({
           item: data.item,
           is_playing: data.is_playing,
@@ -84,7 +76,7 @@ class App extends Component {
         });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -95,7 +87,6 @@ class App extends Component {
     };
     try {
       const { username, displayName, userImage } = await getUserID(token);
-
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
@@ -107,7 +98,6 @@ class App extends Component {
         // tracks: tracks,
         url: data.url
       });
-
       const { timeOfSong, progress_ms } = this.state;
       const refreshSong = timeOfSong - progress_ms;
       if (progress_ms !== null) {
@@ -120,12 +110,12 @@ class App extends Component {
     }
   };
 
-  getSongNames = async (e, url) => {
+  getSongNames = async (e, url, playlistId, playlistName) => {
     const { token } = this.state;
+    this.setState({ playlistId: playlistId.listId, playlistName: playlistName.listname})
     e.preventDefault();
     const { tracks } = await getPlaylistTracks(token, url.link);
     const trackArray = [];
-
     const trackInfo = tracks.map(trackName => {
       const namesOfAlbums = trackName.track;
       trackArray.push({ name: namesOfAlbums.name });
@@ -154,7 +144,9 @@ class App extends Component {
       tracks,
       albums,
       artistNames,
-      token
+      token,
+      playlistId,
+      playlistName
     } = this.state;
 
     return (
@@ -200,6 +192,8 @@ class App extends Component {
                 albums={albums}
                 artistNames={artistNames}
                 token={token}
+                playlistId={playlistId}
+                playlistName={playlistName}
               />
             </React.Fragment>
           )}

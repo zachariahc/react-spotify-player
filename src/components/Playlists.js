@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import "./Playlist.css";
 export class Playlists extends Component {
   listOfPlaylists() {
-    const { playlists } = this.props;
+    const { playlists, getSongNames } = this.props;
+    console.log(playlists)
     return playlists.map(pl => {
       const trackLink = { link: pl.tracks.href };
       return (
         <p
           className="click-list"
-          onClick={e => this.props.getSongNames(e, trackLink)}
+          onClick={e => getSongNames(e, trackLink)}
           key={pl.id}
         >
           {pl.name}

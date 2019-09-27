@@ -38,10 +38,12 @@ const { userImage, displayName } = props
     const { playlists, getSongNames } = props;
     return playlists.map(pl => {
       const trackLink = { link: pl.tracks.href };
+      const playlistId = { listId: pl.id}
+      const playlistName = { listname: pl.name}
       return (
         <p
           className="click-list"
-          onClick={e => getSongNames(e, trackLink)}
+          onClick={e => getSongNames(e, trackLink, playlistId, playlistName)}
           key={pl.id}
         >
           {pl.name}

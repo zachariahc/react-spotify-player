@@ -36,14 +36,16 @@
 
 .main-bar {
     background-color: rgba(48, 48, 48, .75);
-    height: 37vh;
+    height: 38vh;
     opacity: .85;
     border-radius: 5px;
     text-align: center;
     margin: 10px 10px 0px 0px;
     overflow: scroll;
 }
-
+.playlist-placeholder {
+    margin-top: 0;
+}
 @media only screen and (max-width: 900px) {
     .search-font {
         margin: .75;

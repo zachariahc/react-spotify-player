@@ -42,3 +42,24 @@ export async function getPlaylistTracks(token, playlist_url) {
     console.error(err);
   }
 }
+
+export function addSongToPlaylist(token, trackUri, playlist_id) {
+  // console.log("token in index utils", token)
+  console.log(("track uri in index utils", trackUri.trackUri))
+  console.log(token)
+  try {
+    fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks?uris=${trackUri.trackUri}`, {
+    method: 'post',
+    headers: { Authorization: "Bearer " + token }
+  }).then(res => {
+    return res.json();
+  }).then(data => {
+    if(data.snapshot_id !== undefined){
+      console.log('Song added.')
+    }
+  });
+  } catch (err) {
+    console.error(err);
+    console.error(err.message);
+  }
+}
