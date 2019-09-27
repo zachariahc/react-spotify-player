@@ -50,6 +50,11 @@ const { userImage, displayName } = props
     });
   }
 
+  const logUserOut = () => {
+    document.cookie = "token=;"
+    window.location.reload()
+  }
+
   const sideList = side => (
     <div
       className={classes.list}
@@ -66,6 +71,10 @@ const { userImage, displayName } = props
       <Divider />
       <List>
       {listOfPlaylists()}
+      </List>
+      <Divider />
+      <List>
+        <p className="click-list" onClick={logUserOut}>Logout</p>
       </List>
     </div>
   );

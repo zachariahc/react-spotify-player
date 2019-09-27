@@ -44,9 +44,7 @@ export default function MainGrid(props) {
               />
         </Grid>
         <Grid item xs={12} sm={6}>
-              <SearchBar
-              token={token}
-              />
+              <SearchBar token={token}/>
         </Grid>
       </Grid>
       

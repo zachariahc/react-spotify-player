@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { getSearchResults, addSongToPlaylist } from "../utils";
-import hash from "../hash";
+import { getSearchResults } from "../utils";
 import "./SearchBar.css";
 
 export class SearchBar extends Component {
@@ -10,7 +9,7 @@ export class SearchBar extends Component {
   };
   submitSearch = async () => {
     const { searchQuery } = this.state;
-    let token = hash.access_token;
+    const { token } = this.props
     const data = await getSearchResults(token, searchQuery);
     const {
       tracks: { items }
@@ -23,23 +22,20 @@ export class SearchBar extends Component {
   };
 
   confirmAddSong = async (e, name, trackId, trackUri) => {
-    let token = hash.access_token;
+    // let token = hash.access_token;
     console.log(e, name, trackId, trackUri)
     // const pleaseConfirm = window.confirm(`Are you sure you want to add? ${name.name}`)
     // TODO: if user selects true. Add to selected playlist
-    await addSongToPlaylist(token, trackUri)
     // if(pleaseConfirm === true){
-    //   console.log("User selected true", trackUri.trackUri)
-    //   addSongToPlaylist(token, trackUri)
-     
+    //   // console.log("User selected true", trackId.trackId)
     // }
   }
 
   displayResults = () => {
     const { results } = this.state;
+    // console.log(results)
     return results.map(result => {
       // console.log(result.name)
-      // console.log(result)
       const name = { name: result.name}
       const trackId = { trackId: result.id}
       const trackUri = { trackUri: result.uri}
