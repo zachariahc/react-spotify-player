@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getSearchResults } from "../utils";
+import { getSearchResults, addSongToPlaylist } from "../utils";
 import "./SearchBar.css";
 
 export class SearchBar extends Component {
@@ -22,6 +22,7 @@ export class SearchBar extends Component {
   };
 
   confirmAddSong = async (e, name, trackId, trackUri) => {
+    const { token } = this.props
     // let token = hash.access_token;
     console.log(e, name, trackId, trackUri)
     // const pleaseConfirm = window.confirm(`Are you sure you want to add? ${name.name}`)
@@ -29,6 +30,7 @@ export class SearchBar extends Component {
     // if(pleaseConfirm === true){
     //   // console.log("User selected true", trackId.trackId)
     // }
+    addSongToPlaylist(token,trackUri)
   }
 
   displayResults = () => {
