@@ -21,11 +21,23 @@ export class SearchBar extends Component {
     });
     this.setState({ results: resultsArray });
   };
+  confirmAddSong = (e, name, trackId) => {
+    console.log(e, name, trackId)
+    const pleaseConfirm = window.confirm(`Are you sure you want to add? ${name.name}`)
+    // TODO: if user selects true. Add to selected playlist
+    if(pleaseConfirm === true){
+      console.log("User selected true", trackId.trackId)
+    }
+  }
   displayResults = () => {
     const { results } = this.state;
+    console.log(results)
     return results.map(result => {
+      console.log(result.name)
+      const name = { name: result.name}
+      const trackId = { trackId: result.id}
       return (
-        <p className="search-font" key={result.id}>
+        <p className="search-font" onClick={e => this.confirmAddSong(e, name, trackId)} key={result.id}>
           {result.name}
         </p>
       );
