@@ -37,15 +37,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // Set token
-    // Checking current UTC time
-    // let timeCheck = new Date()
-    // let timeToCheck = timeCheck.getTime()
-    // timeCheck.setTime(timeToCheck)
-    // console.log(timeCheck.toUTCString())
-
     let token = hash.access_token;
-
     if (token !== undefined) {
       var now = new Date();
       var time = now.getTime();
@@ -53,11 +45,9 @@ class App extends Component {
       now.setTime(time);
       document.cookie = `token=${token}; expires=${now.toUTCString()}`;
     }
-
     const getCookie = document.cookie;
     const splitCookie = getCookie.split("=");
     const tokenCheck = splitCookie[1];
-
     if (tokenCheck) {
       // Set token
       this.setState({
@@ -69,7 +59,6 @@ class App extends Component {
   }
 
   getCurrentlyPlaying = async token => {
-   
     const params = {
       headers: { Authorization: "Bearer " + token }
     };
@@ -87,7 +76,7 @@ class App extends Component {
         });
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -98,12 +87,10 @@ class App extends Component {
     };
     try {
       const { username, displayName, userImage } = await getUserID(token);
-
       const { data } = await axios.get(
         `https://api.spotify.com/v1/users/${username}/playlists`,
         params
       );
-      console.log(data.items)
       this.setState({
         playlists: data.items,
         displayName: displayName,
@@ -111,7 +98,6 @@ class App extends Component {
         // tracks: tracks,
         url: data.url
       });
-
       const { timeOfSong, progress_ms } = this.state;
       const refreshSong = timeOfSong - progress_ms;
       if (progress_ms !== null) {
@@ -126,12 +112,10 @@ class App extends Component {
 
   getSongNames = async (e, url, playlistId, playlistName) => {
     const { token } = this.state;
-    console.log(playlistName, playlistId)
     this.setState({ playlistId: playlistId.listId, playlistName: playlistName.listname})
     e.preventDefault();
     const { tracks } = await getPlaylistTracks(token, url.link);
     const trackArray = [];
-
     const trackInfo = tracks.map(trackName => {
       const namesOfAlbums = trackName.track;
       trackArray.push({ name: namesOfAlbums.name });
