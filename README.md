@@ -1,4 +1,4 @@
-# This Project was Started and modified with the Repo Below
+# This Project was Started with examples from the repo below
 
 # React Spotify Player Demo
 
